@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    site: './source/javascripts/site.js'
+    site: './assets/javascripts/site.js'
   },
 
   output: {

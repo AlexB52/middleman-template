@@ -1,0 +1,3 @@
+import './methods.js'
+
+tellSomething()
