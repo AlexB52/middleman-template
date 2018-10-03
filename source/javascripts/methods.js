@@ -1,2 +1,0 @@
-tellSomething = () =>
-  alert('hello world')

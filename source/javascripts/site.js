@@ -1,3 +1,3 @@
-import './methods.js'
+import './_methods.js'
 
 tellSomething()

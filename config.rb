@@ -21,6 +21,9 @@ activate :external_pipeline,
          source: ".tmp/dist",
          latency: 1
 
+configure :build do
+  activate :asset_hash
+end
 # With alternative layout
 # page '/path/to/file.html', layout: 'other_layout'
 
