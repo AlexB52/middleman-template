@@ -1,0 +1,2 @@
+tellSomething = () =>
+  alert('hello world')

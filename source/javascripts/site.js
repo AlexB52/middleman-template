@@ -1,2 +1,3 @@
-// This is where it all goes :)
-alert('ici');
+import './methods.js'
+
+tellSomething()
