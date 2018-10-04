@@ -1,5 +1,6 @@
 // webpack.config.js
 var webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
@@ -22,7 +23,18 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       }
     ]
-  }
+  },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "stylesheets/[name].css",
+      chunkFilename: "stylesheets/[id].css"
+    })
+  ],
 };
