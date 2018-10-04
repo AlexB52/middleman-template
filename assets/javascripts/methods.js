@@ -1,4 +1,4 @@
 tellSomething = () =>
-  alert('hello world again')
+  console.log('hello world')
 
 tellSomething()
