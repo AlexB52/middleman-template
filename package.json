@@ -21,6 +21,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
+    "purecss": "^1.0.0",
     "turbolinks": "^5.2.0"
   }
 }
