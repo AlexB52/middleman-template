@@ -13,6 +13,7 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
+activate :livereload
 activate :directory_indexes
 activate :livereload
 activate :external_pipeline,
