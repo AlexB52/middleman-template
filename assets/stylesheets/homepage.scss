@@ -1,0 +1,6 @@
+html, body { height:100%; }
+body { display:flex; align-items:stretch; flex-wrap:wrap;
+  .main-section { height:100%; flex-grow:1;}
+  #hero {background:red; flex-basis:530px;}
+  #description {background:blue; flex-basis:270px;}
+}
