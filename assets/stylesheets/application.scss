@@ -1,2 +1,10 @@
 @import 'purecss';
-@import 'social-media.scss';
+@import 'purecss/buttons.scss';
+@import 'homepage.scss';
+
+html, body {
+  height:100%;
+  font-family: 'Work Sans', sans-serif; 
+  line-height:1.35rem;
+  color:dimgray;
+}

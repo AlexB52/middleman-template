@@ -1,13 +1,29 @@
 ---
 title: Welcome :)
 ---
+<section id="hero" class="main-section">
+  <%= image_tag 'iguazu.jpg' %>
+</section>
 
-<h1>Alexandre Barret</h1>
+<section id="description" class="main-section">
+  <div class="content headings">
+    <h1>Alexandre Barret</h1>  
+    <h2>Web Developer, Dancer, and Wannabe Drummer in Wellington, New Zealand</h2>
+  </div>
 
-<p>My name is Alexandre Barret, I am French Web Developer. You'll find on this website my blog and multiple ways to reach me through social media.</p>
+  <div class="content call-to-action">
+    <button class="pure-button button-large button-warning">Contact Me</button>
+  </div>
 
-<%= image_tag 'social-media/github.svg', class: 'social-media-icon' %>
-<%= image_tag 'social-media/instagram.svg', class: 'social-media-icon' %>
-<%= image_tag 'social-media/facebook.svg', class: 'social-media-icon' %>
-<%= image_tag 'social-media/linkedin.svg', class: 'social-media-icon' %>
-<%= image_tag 'social-media/twitter.svg', class: 'social-media-icon' %>
+  <div class="content bio">
+    <p>Hey, I’m Alexandre. I’m a web developer living in Wellington, New Zealand. I am a fan of lindy hop, ruby, and product development. I’m also interested in music and user research. You can contact my with a click on the button above.</p>
+  </div>
+
+  <div class="content social-media">
+    <% data.social_media_icons.each do |social_media| %>
+      <% link_to social_media.url, target: '_blank' do %>
+        <%= image_tag social_media.icon %>
+      <% end %>
+    <% end %>
+  </div> 
+</section>
