@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>facebook-grey</title>
+    <desc>Created with Sketch.</desc>
+    <g id="facebook-grey" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="facebook" fill-rule="nonzero">
+            <ellipse id="Oval" fill="#999999" cx="64" cy="63.5217364" rx="64" ry="63.5217364"></ellipse>
+            <path d="M69.139,45.2117829 L77.967,45.2117829 L77.967,34.3645271 L69.139,34.3645271 C61.836,34.3645271 55.899,40.7506357 55.899,48.5993178 L55.899,54.0735504 L47.07,54.0735504 L47.07,64.9555349 L55.898,64.9555349 L55.898,91.3017054 L66.931,91.3017054 L66.931,64.9545426 L77.966,64.9545426 L77.966,54.0735504 L66.932,54.0735504 L66.932,48.496124 C66.932,46.6168062 68.102,45.2117829 69.139,45.2117829 Z" id="Path" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>

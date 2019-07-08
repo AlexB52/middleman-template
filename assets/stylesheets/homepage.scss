@@ -6,6 +6,14 @@ body { display:flex; align-items:stretch; flex-wrap:wrap; }
     button {width:100%;}
   }
   &.bio { text-align:justify; }
+  &.social-media { display:flex; justify-content:center; flex-wrap:wrap; 
+    img { width:36px; height:36px; margin:0.8rem;
+      &:hover {
+        -webkit-filter: brightness(115%);
+        filter: brightness(115%);
+      }
+    }
+  }
 }
 
 #hero { background:red; flex-basis:530px; height:auto;
