@@ -12,32 +12,18 @@ title: Welcome :)
   </div>
 
   <div class="content call-to-action">
-    <button class="pure-button button-large button-warning">Press Me</button>
+    <button class="pure-button button-large button-warning">Contact Me</button>
   </div>
 
   <div class="content bio">
-    <p>Hey, I’m Alexandre. I’m a web developer living in Wellington, New Zealand. I am a fan of lindy hop, ruby, and product development. I’m also interested in music and user research. You can view my repo with a click on the button above.</p>
+    <p>Hey, I’m Alexandre. I’m a web developer living in Wellington, New Zealand. I am a fan of lindy hop, ruby, and product development. I’m also interested in music and user research. You can contact my with a click on the button above.</p>
   </div>
 
   <div class="content social-media">
-    <% link_to 'https://www.google.com', target: '_blank' do %>
-      <%= image_tag 'social-media/facebook-grey.svg' %>
-    <% end %>
-
-    <% link_to 'https://www.google.com', target: '_blank' do %>
-      <%= image_tag 'social-media/linkedin-grey.svg' %>
-    <% end %>
-
-    <% link_to 'https://www.google.com', target: '_blank' do %>
-      <%= image_tag 'social-media/instagram-grey.svg' %>
-    <% end %>
-
-    <% link_to 'https://www.google.com', target: '_blank' do %>
-      <%= image_tag 'social-media/github-grey.svg' %>
-    <% end %>
-
-    <% link_to 'https://www.google.com', target: '_blank' do %>
-      <%= image_tag 'social-media/twitter-grey.svg' %>
+    <% data.social_media_icons.each do |social_media| %>
+      <% link_to social_media.url, target: '_blank' do %>
+        <%= image_tag social_media.icon %>
+      <% end %>
     <% end %>
   </div> 
 </section>
