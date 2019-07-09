@@ -11,7 +11,8 @@ title: Contact Me
     <h2>Send me a message and I'll try to reply as soon as possible :)</h2>
   </div>
   <div class="content">
-    <% form_tag '', class: 'pure-form pure-form-stacked', name: 'contact-me', method: 'POST', 
+    <% form_tag '', class: 'pure-form pure-form-stacked',
+      name: 'contact-me', method: 'POST', action: '/thank-you',
       data: { netlify: true, netlify_recaptcha: true } do %>
       <fieldset>
         <div class="pure-g">
