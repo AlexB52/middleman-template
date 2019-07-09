@@ -14,7 +14,7 @@ body { display:flex; align-items:stretch; flex-wrap:wrap; }
     h2 { font-size:1rem; }
   }
   &.call-to-action { text-align:center;
-    button { width:100%; }
+    a { width:100%; }
   }
   &.social-media { display:flex; justify-content:center; flex-wrap:wrap; 
     img { width:36px; height:36px; margin:0.8rem;
