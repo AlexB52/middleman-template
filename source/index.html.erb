@@ -1,29 +1,24 @@
 ---
 title: Welcome
 ---
-<section id="hero" class="main-section" data-turbolinks-permanent>
-  <%= image_tag 'iguazu.jpg' %>
-</section>
 
-<section id="description" class="main-section">
-  <div class="content headings">
-    <h1>Alexandre Barret</h1>  
-    <h2>Web Developer, Dancer, and Wannabe Drummer in Wellington, New Zealand</h2>
-  </div>
+<div class="content headings">
+  <h1>Alexandre Barret</h1>  
+  <h2>Web Developer, Dancer, and Wannabe Drummer in Wellington, New Zealand</h2>
+</div>
 
-  <div class="content call-to-action">
-    <%= link_to 'Contact Me', '/contact-me', class: 'pure-button button-large button-primary' %>
-  </div>
+<div class="content call-to-action">
+  <%= link_to 'Contact Me', '/contact-me', class: 'pure-button button-large button-primary' %>
+</div>
 
-  <div class="content bio">
-    <p>Hey, I’m Alexandre. I’m a web developer living in Wellington, New Zealand. I am a fan of lindy hop, ruby, and product development. I’m also interested in music and user research. You can contact me with a click on the button above.</p>
-  </div>
+<div class="content bio">
+  <p>Hey, I’m Alexandre. I’m a web developer living in Wellington, New Zealand. I am a fan of lindy hop, ruby, and product development. I’m also interested in music and user research. You can contact me with a click on the button above.</p>
+</div>
 
-  <div class="content social-media">
-    <% data.social_media_icons.each do |social_media| %>
-      <% link_to social_media.url, target: '_blank' do %>
-        <%= image_tag social_media.icon %>
-      <% end %>
+<div class="content social-media">
+  <% data.social_media_icons.each do |social_media| %>
+    <% link_to social_media.url, target: '_blank' do %>
+      <%= image_tag social_media.icon %>
     <% end %>
-  </div> 
-</section>
+  <% end %>
+</div> 
