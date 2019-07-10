@@ -12,7 +12,14 @@
     <%= stylesheet_link_tag "site" %>
     <%= javascript_include_tag "site" %>
   </head>
+  
   <body>
-    <%= yield %>
+    <section id="hero" class="main-section" data-turbolinks-permanent>
+      <%= image_tag 'iguazu.jpg' %>
+    </section>
+
+    <section id="description" class="main-section">
+      <%= yield %>
+    </section>
   </body>
 </html>
