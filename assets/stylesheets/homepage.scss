@@ -10,6 +10,7 @@ body { display:flex; align-items:stretch; flex-wrap:wrap; }
 }
 
 .main-section { flex-grow:1; }
+.icon { height:28px; width:28px; margin-right:.5rem; }
 
 .content { max-width: 440px; margin:auto; padding:0 2rem; margin-top:2rem;
   &.headings {
@@ -17,7 +18,7 @@ body { display:flex; align-items:stretch; flex-wrap:wrap; }
     h2 { font-size:1rem; }
   }
   &.call-to-action { text-align:center;
-    a { width:100%; }
+    a { width:100%; display:flex; align-items:center; justify-content:center;}
   }
   &.social-media { display:flex; justify-content:center; flex-wrap:wrap; 
     img { width:36px; height:36px; margin:0.8rem;
