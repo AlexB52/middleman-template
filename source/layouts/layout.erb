@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag "site" %>
     <%= javascript_include_tag "site" %>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-31569872-7"></script>
   </head>
   
   <body>
@@ -21,5 +22,11 @@
     <section id="description" class="main-section">
       <div class="middle"><%= yield %></div>
     </section>
+
+    <% if build? %>
+    <div data-controller="analytics" id="analytics" 
+      data-action="turbolinks:load@window->analytics#sendPageView"
+      data-turbolinks-permanent></div>
+    <% end %>
   </body>
 </html>
