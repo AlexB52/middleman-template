@@ -7,14 +7,16 @@
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
     <title><%= current_page.data.title || "Middleman" %></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" data-turbolinks-track="reload">
     <%= stylesheet_link_tag "site" %>
     <%= javascript_include_tag "site" %>
+    <script src="" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </head>
   <body>
     <%= partial 'layouts/navbar' %>
     <div class="container">
       <%= yield %>
     </div>
+
+    <script src="https://portal.nzags.co.nz/assets/application-86fa40837994c1b592fcfa8249d1353acd782eab266c48bc19e047118766a866.js"></script>
   </body>
 </html>

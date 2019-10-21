@@ -13,6 +13,7 @@
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
     "bootstrap": "^3.4.1",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.3",
     "node-sass": "^4.9.3",
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "jquery": "^3.4.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "url-loader": "^2.2.0"
   }
 }

@@ -27,6 +27,13 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(|png|svg)$/,
+        loader: 'url-loader',
+        options: {
+          name: "[path][name]-[hash].[ext]"
+        }
       }
     ]
   },
@@ -39,6 +46,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
-    }),
+    })
   ],
 };
