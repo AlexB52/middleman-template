@@ -1,0 +1,24 @@
+$grey-bg:rgb(204, 204, 204);
+$primary-color:#42ace9;
+
+label.empty {height:20px;
+  &:after {content: "";}
+}
+
+.form-group {
+  &.inline { display:flex; align-items:center; margin:unset;
+    select, label { margin:unset; }
+    label { font-weight:bold; margin-right:.5rem;}
+    select { width:fit-content;}
+  }
+}
+
+.progress.progress-competency {box-shadow:unset; background-color:unset; background-image:unset;
+  .progress-bar {background-color:$grey-bg; border: .5px solid white;
+    border-top:none; border-bottom:none;
+    width:20%;
+    &.success {background-color:$primary-color;}
+    &:first-child {border-top-left-radius: 35% 50%; border-bottom-left-radius: 35% 50%;}
+    &:last-child  {border-top-right-radius: 35% 50%; border-bottom-right-radius: 35% 50%;}
+  }
+}

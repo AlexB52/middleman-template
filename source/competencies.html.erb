@@ -1,0 +1,52 @@
+---
+title: Competencies
+---
+
+<h1>Competencies</h1>
+
+<%= partial 'competencies/summary' %>
+<%= partial 'competencies/filters' %>
+
+
+<h2>31 competencies</h2>
+<div style="display:flex; align-items:center; justify-content:space-between;">
+  <p style="margin-bottom:unset;">You can make as many attempts as you need to get your minimum Entrustable (EPAs) and Independent (PBAs) assessments.</p>
+
+  <div class="form-group inline">
+    <label for="order">Sort by</label>
+    <%= select_tag :order,
+      class: 'form-control',
+      options: [
+        'Most recently updated',
+        'Competency title (A-Z)',
+        'Competency title (Z-A)',
+        'Progress levels',
+        'Attempts numbers (high to low)',
+        'Attempts numbers (low to high)',
+      ] %>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Competency name</th>
+      <th>EPA/PBA (Year)</th>
+      <th>Attempts</th>
+      <th>Achievements</th>
+      <th>Current status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= partial 'competencies/table_row' %>
+    <%= partial 'competencies/table_row' %>
+    <%= partial 'competencies/table_row' %>
+    <%= partial 'competencies/table_row' %>
+    <%= partial 'competencies/table_row' %>
+    <%= partial 'competencies/table_row' %>
+    <%= partial 'competencies/table_row' %>
+  </tbody>
+</table>
+
+
