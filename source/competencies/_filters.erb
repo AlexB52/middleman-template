@@ -1,24 +1,26 @@
-<div class="well" id="filters">
-  <form class="search">
-    <div class="row">
-      <div class="form-group col-xs-4">
-        <label for="competency">Competency</label>
-         <%= text_field_tag :competency, placeholder: 'Type in a Competency name', class: 'form-control', type: 'search' %>
-      </div>
+<form class="search" id=filters>
+  <div class="row">
 
-      <div class="form-group col-xs-2">
-        <label for="competency">Type</label>
-        <%= select_tag :type, options: ['EPA', 'PBA'], class: 'form-control', include_blank: '--Any Type--' %>
-      </div>
-      <div class="form-group col-xs-2">
-        <label for="competency">Year</label>
-        <%= select_tag :year, options: ['Year 1 - 3', 'Year 4 - 5'], class: 'form-control', include_blank: '--Any Year--' %>
-      </div>
-      <div class="form-group col-xs-4">
-        <label class="empty"></label>
-        <button type="submit" class="btn btn-primary">Filter</button>
-        <%= link_to 'Clear', '#', class: 'btn btn-default' %>
-      </div>
+    <div class="form-group col-xs-4">
+      <label for="competency"><strong>Competency</strong></label>
+       <%= text_field_tag :competency, placeholder: 'Type in a Competency name', class: 'form-control', type: 'search' %>
     </div>
-  </form>
-</div>
+
+    <div class="form-group col-xs-2">
+      <label for="competency"><strong>Type</strong></label>
+      <%= select_tag :type, options: ['EPA', 'PBA'], class: 'form-control', include_blank: '--Any Type--' %>
+    </div>
+
+    <div class="form-group col-xs-2">
+      <label for="competency"><strong>Year</strong></label>
+      <%= select_tag :year, options: ['Year 1 - 3', 'Year 4 - 5'], class: 'form-control', include_blank: '--Any Year--' %>
+    </div>
+
+    <div class="form-group col-xs-4">
+      <label class="empty"></label>
+      <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+      <%= link_to 'Clear', '#', class: 'btn btn-default' %>
+    </div>
+
+  </div>
+</form>

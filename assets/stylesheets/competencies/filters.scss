@@ -1,0 +1,7 @@
+form#filters {
+  @extend .well;
+  .row {margin:unset;}
+  .form-group {margin:unset;
+    &:first-child {padding-left:0;}
+  }
+}
