@@ -1,0 +1,46 @@
+$grey-bg:rgb(204, 204, 204);
+$primary-color:#42ace9;
+
+label.empty {height:20px;
+  &:after {content: "";}
+}
+
+.form-group {
+  &.inline { display:flex; align-items:center; margin:unset;
+    select, label { margin:unset; }
+    label { font-weight:bold; margin-right:.5rem;}
+    select { width:fit-content;}
+  }
+}
+
+.progress.progress-competency {box-shadow:unset; background-color:unset; background-image:unset;
+  .progress-bar {background-color:$grey-bg; border: .5px solid white;
+    border-top:none; border-bottom:none;
+    width:20%;
+    &.success {background-color:$primary-color;}
+    &:first-child {border-top-left-radius: 35% 50%; border-bottom-left-radius: 35% 50%;}
+    &:last-child  {border-top-right-radius: 35% 50%; border-bottom-right-radius: 35% 50%;}
+  }
+}
+
+.competency-summary {color:#317EAC;
+  background-color:white; border:20px solid #E5EDF1; border-radius:4px;
+  h4 {font-size:20px; font-weight:bold;}
+  .summary { display:flex; align-items:center;}
+  section {display:flex; align-items:center; justify-content:space-between;
+    flex-basis:50%;
+  }
+  .statistic {display:flex; align-items:center; justify-content:center;
+    flex-basis:25%; flex-grow:1;
+    margin-right:1rem;
+    &.fb-smaller {flex-basis:15%;}
+  }
+  .value {font-size:36px; margin-right:.5rem; font-weight:500;}
+  .description {font-size:13px;}
+  .type {flex-shrink:1;}
+  .border {border:1px solid #E5EDF1; align-self:stretch; margin:0 1rem;}
+}
+
+table#competencies {
+  thead {background-color:#E5EDF1;}
+}
