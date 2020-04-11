@@ -15,7 +15,6 @@ page '/*.txt', layout: false
 
 activate :livereload
 activate :directory_indexes
-activate :livereload
 activate :external_pipeline,
          name: :webpack,
          command: build? ?
