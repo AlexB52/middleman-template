@@ -9,16 +9,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "babel-loader": "^8.0.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
     "css-loader": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.3",
-    "node-sass": "^4.13.1",
-    "sass-loader": "^7.1.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.3.1",
     "stimulus": "^1.1.1",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "turbolinks": "^5.2.0"
