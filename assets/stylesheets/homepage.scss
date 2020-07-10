@@ -1,41 +1,25 @@
-body { display:flex; align-items:stretch; flex-wrap:wrap; }
-
 #hero { flex-basis:630px; height:auto;
   img { object-position: left; object-fit:cover; width:100%; height:100%; min-height:350px; }
 }
 
-#description { flex-basis:370px; overflow:auto;
-  display:flex; align-items:middle;
-  .middle {margin:0 auto;}
-}
+#description { flex-basis:370px; overflow:auto; }
 
-.main-section { flex-grow:1; }
-.icon { height:28px; width:28px; margin-right:.5rem; }
+.icon { height:28px; width:28px; }
 
-.content { max-width: 440px; margin:auto; padding:0 2rem; margin-top:2rem;
-  &.headings {
-    h1 { color:black; }
-    h2 { font-size:1rem; }
-  }
-  &.call-to-action { text-align:center;
-    a { width:100%; display:flex; align-items:center; justify-content:center;}
-  }
-  &.social-media { display:flex; justify-content:center; flex-wrap:wrap; 
-    img { width:36px; height:36px; margin:0.8rem;
-      &:hover {
-        -webkit-filter: brightness(115%);
-        filter: brightness(115%);
-      }
+.content { max-width: 440px; }
+
+.social-media {
+  img { width:36px; height:36px;
+    &:hover {
+      -webkit-filter: brightness(115%);
+      filter: brightness(115%);
     }
   }
 }
 
 @media(min-width:1000px) {
-  .main-section { height:100%; } 
-  #hero { height:100%;
-    img {max-height:unset; min-height:unset;}
-  }
-  #description .middle {margin:auto;}
+  #hero, #description { height:100%; }
+  #hero img {max-height:unset; min-height:unset;}
 }
 
 @media(min-width:2000px) {
