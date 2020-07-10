@@ -1,12 +1,11 @@
-@import 'purecss';
-@import 'purecss/buttons.scss';
+@import '@primer/css/core/index.scss';
 @import 'homepage.scss';
 @import 'contact-me.scss';
 
 html, body {
   height:100%;
-  font-family: 'Work Sans', sans-serif; 
-  line-height:1.5rem;
-  color:dimgray;
-  text-align:justify;
 }
+
+.my-auto {margin-bottom:auto; margin-top:auto;}
+.flex-grow-1 {flex-grow:1;}
+.width-fit {width:fit-content;}

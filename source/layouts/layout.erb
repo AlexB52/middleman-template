@@ -13,18 +13,18 @@
     <%= javascript_include_tag "site" %>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-31569872-7"></script>
   </head>
-  
-  <body>
-    <section id="hero" class="main-section" data-turbolinks-permanent>
+
+  <body class="d-flex flex-wrap flex-items-stretch">
+    <section id="hero" class="flex-grow-1" data-turbolinks-permanent>
       <%= image_tag 'iguazu.jpg' %>
     </section>
 
-    <section id="description" class="main-section">
-      <div class="middle"><%= yield %></div>
+    <section id="description" class="d-flex flex-grow-1">
+      <div class="content width-full mx-auto my-auto p-4"><%= yield %></div>
     </section>
 
     <% if build? %>
-    <div data-controller="analytics" id="analytics" 
+    <div data-controller="analytics" id="analytics"
       data-action="turbolinks:load@window->analytics#sendPageView"
       data-turbolinks-permanent></div>
     <% end %>
