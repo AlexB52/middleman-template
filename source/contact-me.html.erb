@@ -1,45 +1,54 @@
 ---
 title: Contact Me
 ---
-<div class="content headings">
-  <h1>Contact Me</h1>
-  <h2>Send me a message and I'll try to reply as soon as possible :)</h2>
-</div>
+<h1>Contact Me</h1>
+<p class="lead mb-0">Send me a message and I'll try to reply as soon as possible :)</p>
 
-<div class="content">
-  <% form_tag '', class: 'pure-form pure-form-stacked',
-    name: 'contact-me', method: 'POST', action: '/thank-you/',
-    data: { netlify: true, netlify_honeypot: 'username' } do %>
-    <fieldset>
-      <div class="pure-g">
-        <div class="pure-u-1-2">
-          <%= label_tag 'fullname' %>
-          <%= text_field_tag 'fullname', class: 'pure-u-23-24', required: true %>
-        </div>
-
-        <div class="pure-u-1-2">
-          <%= label_tag 'email' %>
-          <%= email_field_tag 'email', class: 'pure-input-1', required: true %>
-        </div>
-
-        <div class="pure-u-1">
-          <%= label_tag 'message' %>
-          <%= text_area_tag 'message', class: 'pure-input-1', rows: '10', maxlength: 500, required: true %>
-          <span class="pure-form-message">Maximum 500 characters.</span>
-        </div>
+<% form_tag '', name: 'contact-me', method: 'POST', action: '/thank-you/',
+  data: { netlify: true, netlify_honeypot: 'username' } do %>
+  <div class="col-5 float-left pr-3">
+    <div class="form-group">
+      <div class="form-group-header">
+        <%= label_tag 'fullname' %>
       </div>
-    </fieldset>
-
-    <fieldset class="extra">
-      <div class="pure-u-1">
-        <%= label_tag 'username' %>
-        <%= text_field_tag 'username', class: 'pure-input-1' %>
+      <div class="form-group-body">
+        <%= text_field_tag 'fullname', class: 'form-control', required: true %>
       </div>
-    </fieldset>
+    </div>
+  </div>
 
-    <fieldset>
-      <%= submit_tag 'Send Message', class: 'pure-button button-primary button-large' %>
-      <%= link_to 'Cancel', '/' %>
-    </fieldset>
-  <% end %>
-</div>
+  <div class="col-7 float-left">
+    <div class="form-group">
+      <div class="form-group-header">
+        <%= label_tag 'email' %>
+      </div>
+      <div class="form-group-body">
+        <%= text_field_tag 'email', class: 'form-control', required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group d-none">
+    <div class="form-group-header">
+      <%= label_tag 'username' %>
+    </div>
+    <div class="form-group-body">
+      <%= text_field_tag 'username', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-group-header">
+      <%= label_tag 'message' %>
+    </div>
+    <div class="form-group-body">
+      <%= text_area_tag 'message', class: 'form-control', rows: '10', maxlength: 500, required: true %>
+      <p class="note">Maximum 500 characters.</p>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag 'Send Message', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', '/', class: 'btn' %>
+  </div>
+<% end %>
