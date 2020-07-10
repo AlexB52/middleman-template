@@ -21,7 +21,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "purecss": "^1.0.1",
+    "@primer/css": "^15.0.0",
     "turbolinks": "^5.2.0"
   }
 }
