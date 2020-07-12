@@ -19,8 +19,11 @@
       <%= image_tag 'iguazu.jpg' %>
     </section>
 
-    <section id="description" class="d-flex flex-grow-1">
-      <div class="content width-full mx-auto my-auto p-4"><%= yield %></div>
+    <section id="description" class="flex-grow-1">
+      <%= partial 'layouts/navigation' %>
+      <div class="content width-full mx-auto p-4">
+        <%= yield %>
+      </div>
     </section>
 
     <% if build? %>
