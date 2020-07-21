@@ -1,9 +1,15 @@
 @import '@primer/css';
 @import 'homepage.scss';
 @import 'contact-me.scss';
+@import 'blog.scss';
 
-html, body {
+html, body#layout {
   height:100%;
+}
+
+body#blog {
+  height:auto;
+  footer { height:10rem; }
 }
 
 .my-auto {margin-bottom:auto; margin-top:auto;}

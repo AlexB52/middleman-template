@@ -1,0 +1,144 @@
+---
+
+title: NZX Email Alerts
+date: 2020-07-13 09:33 UTC
+description: In this article, I'll detail how to get price alerts emailed to you for any NZX company stock prices. All you need is a Gmail and Zapier account!
+tags: Google, NZX, Gmail, Zapier
+social_media: social-media-2.png
+
+---
+{::options parse_block_html="true" /}
+
+# NZX Email Alerts
+
+In this article, I'll detail how to get price alerts emailed to you for any NZX listed company. All you need is a Gmail and a Zapier account! You can create a zapier account [here](https://zapier.com/).
+
+By the end, you'll have a functional email alert system configured for NZX companies. You'll be able to add more price alerts and reuse the process to create custom alerts that fit your investing needs.
+
+Feel free to <%= link_to 'contact me', '/contact-me', class: 'btn btn-primary' %> if you have any questions.
+
+***Disclaimer:** Those are not real time price alerts. It generally takes 20 minutes for Google to update their prices. Zapier can also take 15 minutes before sending an email. This allows you to let Google watch those prices for you instead of doing it yourself all day long.*
+
+![social-media](2020-07-13-nzx-email-alerts/social-media-1.png)
+
+## #1 - The Google Spreadsheet
+
+Create a Google spreadsheet as shown on the screenshot below. You can download a [template](https://docs.google.com/spreadsheets/d/1m1yOnZ0Hk26PsN-LD4xiHbLo9bCmHLoaInlYLmHytOc/edit?usp=sharing) to help you out.
+
+![spreadsheet](2020-07-13-nzx-email-alerts/spreadsheet-template.png)
+
+### The columns
+
+Fill each column as described in the table below for each company you want to set a price alert for.
+
+|Cell|Column|Description|Example|Comment|
+|-
+|A2|Company|The name of the company you follow|Air New Zealand||
+|B2|Ticker|The Google Finance Symbol of the company|NZE:AIR||
+|C2|Target|The target price you want to set your alert to|$1.2|The number is formatted as a currency|
+|D2|Current Price|The current price of the said stock|=GOOGLEFINANCE(B2)|B2 is NZE:AIR|
+|E2|Alert Triggered?|Column showing if your price is met|=C2>=D2|Current Price is less or equal to Target Price|
+
+### Enable Automatic Updates
+
+In the spreadsheet settings, you need to set the calculations to `on change and every minute` so that your spreadsheet keeps being updated after you close it.
+
+![spreadsheet](2020-07-13-nzx-email-alerts/spreadsheet-settings.png)
+
+## #2 - Create a Zap with Zapier
+
+Once your spreadsheet is finalised, it is time to make the magic happen with Zapier.
+
+Head to [Zapier's website](https://zapier.com/) and create a new Zap.
+
+### Step #1: The Trigger
+
+This step configures the event that will trigger the ZAP, in our case, an update to the current stock price will trigger an email alert. Follow the steps below to properly configure Zapier.
+
+#### 1. Choose App & Event
+
+* **Choose App**: Google Sheets
+* **Choose Trigger Event**: New or Updated Spreadsheet Row
+
+#### 2. Choose Account
+
+* **Google Sheets**: Enable OR Choose your Gmail account
+
+#### 3. Customize Spreadsheet Row
+
+* **Spreadsheet**: <Name of your spreadsheet>. Ex: Price Alerts Template
+* **Worksheet**: <Name of the Tab>. Ex: Alerts
+* **Trigger** Column: <Name of the column to watch>. Ex: Current Price
+
+#### 4. Find Data
+
+Test that your spreadsheet is identifying correctly which column to look at for updates.
+
+<div data-controller="collapse" data-collapse-display="block">
+  <%= link_to 'Toggle image', '#', data: { action: 'collapse#toggleImage' } %>
+  {:refdef: data-target="collapse.image"}
+  ![trigger](2020-07-13-nzx-email-alerts/1-the-trigger-opt.gif)
+  {: refdef}
+</div>
+
+**Proceed to the next step**
+
+### Step #2: The Filter
+
+This step will help Zapier identify whether an email should be sent or not. If your `Alert Triggered?` column shows `TRUE`, this is when Zapier should send an email.
+
+#### 1. Choose App & Event
+
+* **Choose App**: Filter by Zapier
+
+#### 2. Filter Setup & Testing
+
+To do so, choose only continue if the Trigger Column `Alert Triggered?` is `(Boolean) is True`.
+
+<div data-controller="collapse" data-collapse-display="none">
+  <%= link_to 'Toggle image', '#', data: { action: 'collapse#toggleImage' } %>
+  {:refdef: data-target="collapse.image"}
+  ![trigger](2020-07-13-nzx-email-alerts/2-the-filter-opt.gif)
+  {: refdef}
+</div>
+
+**Proceed to the next step**
+
+### Step #3: The Action
+This step configures the email to send when the alert is triggered.
+
+#### 1. Choose App & Event
+
+* **Choose App**: Gmail
+* **Choose Action Event**: Send Email
+
+#### 2. Choose Account
+
+* Enable OR Choose your Gmail account
+
+#### 3. Customise Email
+
+Fill the required field to complete that step. You can choose what you want but here are some good defaults.
+
+* **To**: [your email address]
+* **From**: [your email address]
+* **Subject**: [Google Sheets: Company] stock price has reached: [Google Sheets: Current Price]
+* **Body**: You have received this email from a Zap you created because a NZX company has reached your target price.
+
+#### 4. Send Data
+
+Test that you receive an email and that everything is configured correctly
+
+<div data-controller="collapse" data-collapse-display="none">
+  <%= link_to 'Toggle image', '#', data: { action: 'collapse#toggleImage' } %>
+  {:refdef: data-target="collapse.image"}
+  ![trigger](2020-07-13-nzx-email-alerts/3-the-action-opt.gif)
+  {: refdef}
+</div>
+
+### Step #4: ENABLE YOUR ZAP!
+
+Done! you'll now receive an email every time, one of a stock price on your spreadhseet meets your target price.
+
+If you want to stop receiving an email after the first alert is sent just remove the row on your table.
+

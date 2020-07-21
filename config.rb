@@ -13,6 +13,12 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
+activate :blog do |blog|
+  blog.prefix = "blog"
+  blog.permalink = "{year}/{title}.html"
+  blog.layout = "layouts/blog"
+end
+
 activate :livereload
 activate :directory_indexes
 activate :external_pipeline,
