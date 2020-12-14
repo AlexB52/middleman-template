@@ -1,7 +1,7 @@
 <h1>Blog</h1>
-<% blog.articles[0...5].each do |article| %>
-  <article>
-    <h1><%= link_to article.title, article.url %></a></h1>
+<% blog.articles.select(&:published?).each do |article| %>
+  <article class="mb-3">
+    <h1 class="h3"><%= link_to article.title, article.url %></a></h1>
     <p><%= article.data.description%></p>
     <%= link_to 'Read more', article.url %>
   </article>

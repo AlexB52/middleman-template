@@ -1,3 +1,8 @@
 .markdown-body { max-width:768px;
-  img { @extend .Box }
+  img { @extend .Box; }
+  p { text-align:justify; line-height:32px; }
+}
+
+.markdown-body .highlight, .markdown-body {
+  pre { background-color:#232323; }
 }
