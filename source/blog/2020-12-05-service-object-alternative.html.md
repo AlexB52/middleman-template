@@ -2,7 +2,7 @@
 
 title: Service objects, an alternative
 date: 2020-12-05 10:00 UTC
-description: In this article, I described an alternative to service objects encountered in Rails codebases.
+description: This article outlines an alternative to service objects encountered in Rails codebases.
 tags: Rails, ActiveModel, Service Object
 social_media: hope.jpg
 

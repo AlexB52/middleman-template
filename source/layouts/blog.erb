@@ -2,15 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="<%= current_page.data.title %>"/>
+    <meta property="og:description" content="<%= current_page.data.description %>"/>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Use the title from a page's frontmatter if it has one -->
-    <title><%= current_page.data.title || "Middleman" %></title>
+    <title><%= current_page.data.title || "Bog - Alex Barret" %></title>
+
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,700&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag "site" %>
     <%= javascript_include_tag "site" %>
@@ -22,7 +22,6 @@
     <div class="position-sticky top-0">
       <%= partial 'layouts/navigation' %>
     </div>
-
 
     <div class="markdown-body mx-auto p-4 p-md-2" data-controller="code-highlighter">
       <%= yield %>

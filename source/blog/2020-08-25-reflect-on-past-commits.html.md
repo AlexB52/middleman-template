@@ -13,6 +13,13 @@ social_media: code.jpg
 
 *[Originally published for Abletech](https://stories.abletech.nz/reflect-on-past-commits-e0f92071a3fa)*
 
+<div class="hero">
+  ![publication feature](2020-08-25-reflect-on-past-commits/code.jpg)
+  <small class="d-block text-center">
+    <span>Photo by <a href="https://unsplash.com/@yancymin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Yancy Min</a> on <a href="https://unsplash.com/s/photos/code?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+  </small>
+</div>
+
 One of Abletech’s Team Values is Continuous Improvement. We believe in getting better at what we do, a little bit more, every day. We are committed to ‘do the right thing’ and always leave a codebase in better shape than we found it.
 
 Programming is all about writing code that is easy to understand. Why? Developers write code but, most importantly, developers read code. A lot of it. Reading code that is hard to understand is frustrating, scary and slows down productivity.
