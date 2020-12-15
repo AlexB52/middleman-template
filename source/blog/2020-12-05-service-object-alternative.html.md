@@ -39,7 +39,9 @@ The feature we're going to implement is a simple **publish/unpublish** action on
   # config/routes.rb
   root 'posts#index'
   resources :posts
-
+~~~
+{: data-target="code-highlighter.ruby"}
+~~~ruby
   # app/models/post.rb
   class Post < ApplicationRecord
     belongs_to :publisher, optional: true
@@ -53,7 +55,9 @@ The feature we're going to implement is a simple **publish/unpublish** action on
     #   t.boolean "published"
     # end
   end
-
+~~~
+{: data-target="code-highlighter.ruby"}
+~~~ruby
   # app/models/publisher.rb
   class Publisher < ApplicationRecord
     # create_table "publishers", force: :cascade do |t|
@@ -74,9 +78,10 @@ Let's start by describing how we would tackle this with service objects. We woul
     put :publish, on: :member
     put :unpublish, on: :member
   end
-
+~~~
+{: data-target="code-highlighter.ruby"}
+~~~ruby
   # app/controllers/posts_controller.rb
-
   def new_publication
   end
 
