@@ -1,3 +1,4 @@
+require 'byebug'
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
