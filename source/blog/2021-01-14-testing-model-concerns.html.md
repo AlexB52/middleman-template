@@ -72,7 +72,9 @@ In this example, we'll look at an ActiveRecord class `Post` which includes a `Re
 
 ## TL;DR solution
 
-Here is the gist for people looking to see how it's done: [complete solution][gist]. The main idea is to test every concern with a vanilla ApplicationRecord class connected to a temporary database table. Keep reading to see how it works!
+Below is the gist for people looking to see how it's done. The main idea is to test every concern with a vanilla ApplicationRecord class connected to a temporary database table.
+
+Here is the gist for people looking to see how it's done: . The main idea is to test every concern with a vanilla ApplicationRecord class connected to a temporary database table. Keep reading to see how it works!
 
 ~~~ruby
 require_relative 'path/to/reviewable/shared/examples'
@@ -100,6 +102,8 @@ end
 {: data-target="code-highlighter.ruby"}
 
 Let's take a moment to appreciate how explicit this is. The test displays all the information to teach future devs how the `Reviewable` concern is setup: how to grant the role and the minimal schema required for an ActiveRecord to acquire the role. To understand what `Reviewable` does, someone can open `'path/to/reviewable/shared/examples'` and eliminate all the noise from huge test files by only seeing the tests related to `Reviewable` behaviour.
+
+Here is the [full gist: Testing ActiveRecord Concerns][gist].
 
 ## Why test concerns in isolation?
 
@@ -392,7 +396,7 @@ end
 
 ### What about testing scopes?
 
-This article is quite long already. The same principles would apply to test scopes. If you're interested in a fully working spec suite, here is the [Gist: Testing ActiveRecord Concerns][gist].
+This article is quite long already. The same principles would apply to test scopes. If you're interested in a fully working spec suite, here is the [gist: Testing ActiveRecord Concerns][gist].
 
 ### Raw SQL queries
 
