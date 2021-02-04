@@ -12,7 +12,7 @@ social_media: masks.jpg
 
 <small style="float:right;"> _14January 2021_ </small>
 
-# Testing ActiveRecord Concerns
+# Testing ActiveRecord concerns
 
 <div class="hero">
   ![publication feature](2021-01-14-testing-model-concerns/masks.jpg)
@@ -22,16 +22,16 @@ social_media: masks.jpg
 </div>
 
 
-ActiveRecord classes manage persistence and have a tight relationship with their database table. This relationship makes testing sometimes tricky and even trickier when testing Rails concerns. This article describes how to test those concerns used in isolation from its ActiveRecord class and its associated database table.
+ActiveRecord classes manage persistence and have a tight relationship with their database tables. This relationship, sometimes, makes testing tricky and even trickier when testing Rails concerns. This article describes how to test those concerns used in isolation from its ActiveRecord class and their associated database table.
 
-The code examples are written using RSpec and switching to Minitest is possible but requires a fair bit of work.
+The code examples are written using RSpec. Switching to Minitest is possible but requires a fair bit of work.
 
 ## What are concerns?
 
-Concerns are the Rails way to grant a role or interface to a Ruby class. It provides a nicer syntax than Ruby and aims to clarify confusion around dependencies when used with nested modules. Here is the [documentation](https://api.rubyonrails.org/v6.1.0/classes/ActiveSupport/Concern.html).
+Concerns are the Rails way to grant a role or interface to a Ruby class. They provide a nicer syntax than Ruby and aim to clarify confusion around dependencies when used with nested modules. Here is the [documentation](https://api.rubyonrails.org/v6.1.0/classes/ActiveSupport/Concern.html).
 
 
-## Example: The Reviewable Concern
+## Example: the Reviewable concern
 
 In this example, we'll look at an ActiveRecord class `Post` which includes a `Reviewable` concern. To work properly the concern needs to be included in an ActiveRecord class hooked to a table with a `reviewed_at:datetime` column.
 
@@ -70,7 +70,7 @@ In this example, we'll look at an ActiveRecord class `Post` which includes a `Re
 ~~~
 {: data-target="code-highlighter.ruby"}
 
-## TL;DR Solution
+## TL;DR solution
 
 Here is the gist for people looking to see how it's done: [complete solution][gist]. The main idea is to test every concern with a vanilla ApplicationRecord class connected to a temporary database table. Keep reading to see how it works!
 
@@ -103,18 +103,18 @@ Let's take a moment to appreciate how explicit this is. The test displays all th
 
 ## Why test concerns in isolation?
 
-Switching to an isolated table to test concerns ensure that concerns are decoupled from the first ActiveRecord class they've been introduced into, `Post` in this example.
+Switching to an isolated table to test concerns ensures that concerns are decoupled from the first ActiveRecord class they've been introduced into, `Post` in this example.
 
 Failing to extract and test your concern in another class than the original ActiveRecord class is not reusable. It is also a smell that the role is not fully understood or is the wrong abstraction.
 
-Having the concern tested this way gives more confidence in reusing `Reviewable` with any ActiveRecord class that has a `reviewed_at:datetime` column in its table.
+Having the concern tested this way gives you more confidence in reusing `Reviewable` with any ActiveRecord class that has a `reviewed_at:datetime` column in its table.
 
 
 ## Testing
 
-### Concerns and their interface
+### Concerns and interfaces
 
-In OOP, to successfully test a role you need to define and test its public interface and so do Rails concerns are no exception. Because it is included in the `Post` model, we start by writing the interface tests in the `post_spec.rb` file.
+In OOP, to successfully test a role, you need to define and test its public interface and Rails concerns are no exception. Because `Reviewable` module is included in `Post`, we start by writing the interface tests in the `post_spec.rb` file.
 
 ~~~ruby
 describe Post do
@@ -132,9 +132,9 @@ end
 ~~~
 {: data-target="code-highlighter.ruby"}
 
-### Concerns and Fakes
+### Concerns and fakes
 
-A role/concern is meant to be shared with other Ruby classes. Currently, `Reviewable` is only included in the `Post` model, however, nothing stops us from including it in other classes, especially testing classes. To do so we extract the role tests into shared tests and include those in the `post_spec.rb` and a `reviewable_spec.rb` files:
+A role/concern is meant to be shared with other Ruby classes. Currently, `Reviewable` is only included in the `Post` model, however, nothing stops us from including it in other classes, especially testing classes. To do so we extract the role tests into shared tests and include those in the `post_spec.rb` and `reviewable_spec.rb` files:
 
 ~~~ruby
 shared_examples 'reviewable'do
@@ -188,7 +188,7 @@ end
 
 ### Concerns and ActiveRecord
 
-One problem with this test is that while `Post` and `FakeReviewable` share the same interface, they do not share the same behaviour. More importantly, this behaviour is tight to the existence of a table column `reviewed_at:datetime` hooked to the model class. Let's start by adding more tests.
+One problem with this test is that while `Post` and `FakeReviewable` share the same interface, they do not share the same behaviour. More importantly, this behaviour is tied to the existence of a table column `reviewed_at:datetime` hooked to the model class. Let's start by adding more tests.
 
 ~~~ruby
 # requires a :reviewable object
@@ -259,7 +259,7 @@ end
 ~~~
 {: data-target="code-highlighter.ruby"}
 
-### Concerns and Database Integrity
+### Concerns and database integrity
 
 We could stop here and move on to write the scope tests but there is one big problem with this. More often than not, models like `Post` have further validation rules even in their database table. Let's imagine a scenario like this one:
 
@@ -314,9 +314,9 @@ end
 
 But this will still not work, as `FakeReviewable` class is attached to the `posts` database table and it still requires `:title`, and `:author` to be populated. It almost feels like we need a dedicated table for `FakeReviewable` class...
 
-### Switching to Temporary Database Tables
+### Switching to temporary database tables
 
-In an ideal world, we would need a `fake_reviewables` table with a single `reviewed_at` columns so that we remove the need for `title` and `author_id` to be populated. One way to do this is to create a dedicated `fake_reviewables` testing table in your `schema.rb` but that table will also end up in your production database.
+In an ideal world, we would need a `fake_reviewables` table with a single `reviewed_at` column so that we remove the need for `title` and `author_id` to be populated. One way to do this is to create a dedicated `fake_reviewables` testing table in your `schema.rb` but that table will also end up in your production database.
 
 While we could argue that this is no big deal and there is nothing wrong with having testing tables in production, I'll end this article with some code on how to switch to an in-memory SQLite `fake_reviewables` table.
 
@@ -392,7 +392,7 @@ end
 
 ### What about testing scopes?
 
-The article is quite long already the same principles would apply to test scopes. If you're interested in a fully working spec suite, here is the [Gist: Testing ActiveRecord Concerns][gist].
+This article is quite long already. The same principles would apply to test scopes. If you're interested in a fully working spec suite, here is the [Gist: Testing ActiveRecord Concerns][gist].
 
 ### Raw SQL queries
 
@@ -404,7 +404,7 @@ In this case, another testing approach would be required for that specific conce
 
 ### Tests are fast
 
-Tests run on an `SQLite memory` database are fast, faster than using MySQL or PostgreSQL to test your application. Here is a quick benchmark to show the differences between PostgreSQL, SQLite file and in-memory databases. The result shows the creation of a thousand posts on a rails console with each adapter.
+Tests run on a `SQLite memory` database are fast, faster than using MySQL or PostgreSQL to test your application. Here is a quick benchmark to show the differences between PostgreSQL, SQLite file and in-memory databases. The result shows the creation of a thousand posts on a rails console with each adapter.
 
 ~~~ruby
 Post.create! title: 'title1'
@@ -462,7 +462,7 @@ Switching locally to an in-memory SQLite database for some tests is not taking t
 
 ### Minitest
 
-I love Minitest but I am not aware of a standard method to run expensive tasks before a group of test like RSpec does with `before(:all)`. One way would be to use [minitest-hooks gem][minitest-hooks] which helps you wrap expensive task in a similar fashion than RSpec.
+I love Minitest but I am not aware of a standard method to run expensive tasks before a group of tests like RSpec does with `before(:all)`. One way would be to use [minitest-hooks gem][minitest-hooks] which helps you wrap expensive tasks in a similar fashion to RSpec.
 
 [gist]: https://gist.github.com/AlexB52/0e186b6bd5220d42351f5cffe47439e7
 [minitest-hooks]: https://github.com/jeremyevans/minitest-hooks
