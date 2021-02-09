@@ -1,8 +1,8 @@
 ---
 
-title: Service objects, an alternative
+title: An alternative to Service Objects
 date: 2020-12-05 10:00 UTC
-description: This article outlines an alternative to service objects encountered in Rails codebases.
+description: This article outlines how to use ActiveModel::Model to substitute service objects encountered in Rails codebases.
 tags: Rails, ActiveModel, Service Object
 social_media: hope.jpg
 
@@ -10,7 +10,7 @@ social_media: hope.jpg
 
 {::options parse_block_html="true" /}
 
-# Service Objects: An Alternative
+# An alternative to Service Objects
 
 <div class="hero">
   ![publication feature](2020-12-05-service-object-alternative/hope.jpg)
@@ -21,11 +21,11 @@ social_media: hope.jpg
 
 **Service objects are overused.** They have become the default solution for any new features in a Rails codebase. They're also hard to talk about as they mean different things for different people. Here is how I define them:
 
-* Any class which have **one** public `#perform` or `#call` method.
-* Any class which name describes an action.
+* Any class which has **one** public `#perform` or `#call` method
+* Any class whose name describes an action.
 * Example: `PublishApprovedPost.perform(post: @post)`
 
-The intent of the article is to broaden our options as Rails developers and describe an alternative to using service objects with **ActiveModel::Model** on Plain Old Ruby Objects (POROs). This is a reliable but undervalued approach that should be part of every Rails developer's toolbox. The article outlines this method in further detail.
+The intent of this article is to broaden our options as Rails developers and describe an alternative to using service objects with **ActiveModel::Model** on Plain Old Ruby Objects (POROs). This is a reliable but undervalued approach that should be part of every Rails developer's toolbox. This article outlines this method in further detail.
 
 ## The feature
 
@@ -104,12 +104,12 @@ Let's start by describing how we would tackle this with service objects. We woul
 
 ##### Form Errors
 
-The first thing that comes to mind is how errors are handled and displayed on the view. You'll most likely have to tweak your `_form.html.erb` partial to display errors appropriately because the service object doesn't match the Rails approach like ActiveRecord does. To handle errors, you might:
+The first thing that comes to mind is how errors are handled and displayed in the view. You'll most likely have to tweak your `_form.html.erb` partial to display errors appropriately because the service object doesn't match the Rails approach like ActiveRecord does. To handle errors, you might:
 
-* Create a view or a form object.
-* Proxy errors to `@post` and reference it in the view.
-* Loop through a custom array of errors in the view.
-* Include `ActiveModel::Validations` to your service.
+* Create a view or a form object
+* Proxy errors to `@post` and `@post.errors` in the view
+* Loop through a custom array of errors in the view
+* Include `ActiveModel::Validations` to your service
 
 With time, devs using service objects will probably end up with a solution that they'll apply on all their views. From experience, this is rarely the case and multiple implementations of error handling or forms are spread across the codebase. Devs spend time going against Rails just to accomodate the use of service objects.
 
@@ -127,7 +127,7 @@ We now have one service for each action which makes it hard to update the code i
 
 ##### Reusability
 
-The trap of services is to think that they are DRY and reusable. The idea is that a service is so good at doing one thing that it can be reused in other services. This is where the nightmare starts. Those services become bloated by conditions and edge cases once reused. After a while, you end up with a lengthy perform method with nested ifs. This trap is too easy to fall in.
+The trap of services is to think that they are DRY and reusable. The idea is that a service is so good at doing one thing that it can be reused in other services. This is where the nightmare starts. Those services become bloated by conditions and edge cases once reused. After a while, you end up with a lengthy perform method with nested ifs. This trap is too easy to fall into.
 
 **Idea:** Service classes share the same interface and could use polymorphism. Nothing stops a factory from presenting the right type of service to its client. That said, we tend to handle all use cases in one single class.
 
@@ -142,7 +142,7 @@ This new implementation comes down to three things:
 Instead of publishing and unpublishing a post, we consider creating a publication and destroying a publication for a post.
 
 * `PublishPost#perform` becomes `Publication#create`
-* `UnpublishPost#perform` becomes `Publication#destroy`.
+* `UnpublishPost#perform` becomes `Publication#destroy`
 
 #### The Model - Publication
 
@@ -293,9 +293,9 @@ With the ActiveModel implementation, the view (and form), the controller and the
 
 To be honest the advice given in this article can also be implemented with service objects:
 
-* Nothing stops us from sticking to REST routes with service objects.
-* Nothing stops us from including ActiveModel in service objects.
-* Nothing stops us from having more than one public method in service objects.
+* Nothing stops us from sticking to REST routes with service objects
+* Nothing stops us from including ActiveModel in service objects
+* Nothing stops us from having more than one public method in service objects
 
 To some extent, the Publication model is probably more similar to the **Command Design Pattern** than the service objects implementation described in this article.
 
@@ -307,7 +307,7 @@ While this might be a natural instinct it may not help you grow as a developer. 
 
 #### Further Reading
 
-Service objects... Some see them as best practice, others as an anti-pattern. They are well established in the Rails community but increasingly developers are now challenging them.
+Service objects... Some see them as best practice, others as an anti-pattern. They are well established in the Rails community but developers are now increasingly challenging them.
 
 * [Reddit: Where did the concept of service object come from?](https://www.reddit.com/r/rails/comments/itivdn/where_did_concept_of_service_object_come_from/)
 * [Reddit: Is command pattern a common thing in the industry?](https://www.reddit.com/r/rails/comments/jvxhew/is_command_pattern_a_common_thing_in_the_industry/)
