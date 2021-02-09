@@ -2,7 +2,7 @@
 
 title: Testing ActiveRecord Concerns
 date: 2021-01-14 10:00 UTC
-description: This article outlines how I test Rails concerns used on ActiveRecord models
+description: This article outlines how to test Rails concerns used on ActiveRecord models with temporary database tables.
 tags: Rails, ActiveRecord, Concerns, Testing
 social_media: masks.jpg
 
@@ -74,8 +74,6 @@ In this example, we'll look at an ActiveRecord class `Post` which includes a `Re
 
 Below is the gist for people looking to see how it's done. The main idea is to test every concern with a vanilla ApplicationRecord class connected to a temporary database table.
 
-Here is the gist for people looking to see how it's done: . The main idea is to test every concern with a vanilla ApplicationRecord class connected to a temporary database table. Keep reading to see how it works!
-
 ~~~ruby
 require_relative 'path/to/reviewable/shared/examples'
 
@@ -103,13 +101,13 @@ end
 
 Let's take a moment to appreciate how explicit this is. The test displays all the information to teach future devs how the `Reviewable` concern is setup: how to grant the role and the minimal schema required for an ActiveRecord to acquire the role. To understand what `Reviewable` does, someone can open `'path/to/reviewable/shared/examples'` and eliminate all the noise from huge test files by only seeing the tests related to `Reviewable` behaviour.
 
-Here is the [full gist: Testing ActiveRecord Concerns][gist].
+Here is the full gist: [Testing ActiveRecord concerns][gist].
 
 ## Why test concerns in isolation?
 
 Switching to an isolated table to test concerns ensures that concerns are decoupled from the first ActiveRecord class they've been introduced into, `Post` in this example.
 
-Failing to extract and test your concern in another class than the original ActiveRecord class is not reusable. It is also a smell that the role is not fully understood or is the wrong abstraction.
+Failing to extract and test your concern in another class than the original ActiveRecord class is a smell that the role is not fully understood or is the wrong abstraction.
 
 Having the concern tested this way gives you more confidence in reusing `Reviewable` with any ActiveRecord class that has a `reviewed_at:datetime` column in its table.
 
@@ -192,7 +190,9 @@ end
 
 ### Concerns and ActiveRecord
 
-One problem with this test is that while `Post` and `FakeReviewable` share the same interface, they do not share the same behaviour. More importantly, this behaviour is tied to the existence of a table column `reviewed_at:datetime` hooked to the model class. Let's start by adding more tests.
+One problem with this test is that while `Post` and `FakeReviewable` share the same interface, they do not share the same behaviour. More importantly, this behaviour is tied to the existence of a table column `reviewed_at:datetime` hooked to the model class.
+
+Let's start by adding more tests.
 
 ~~~ruby
 # requires a :reviewable object
@@ -333,7 +333,7 @@ module InMemoryDatabaseHelpers
   class_methods do
     def switch_to_SQLite(&block)
       before(:all) { switch_to_in_memory_database(&block) }
-      after(:all) { switch_back_to_test_database }
+      after(:all)  { switch_back_to_test_database }
     end
   end
 
