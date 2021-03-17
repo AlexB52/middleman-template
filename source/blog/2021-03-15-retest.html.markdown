@@ -11,51 +11,63 @@ published: false
 [book]: https://sandimetz.com/99bottles
 [retest]: https://github.com/AlexB52/retest
 
-# Practical Refactoring
+<small style="float:right;"> _18 March 2021_ </small>
 
-At the end of the article I introduce [retest][retest], a gem I created that will help you refactor ruby projects on the fly just like the methodology described in [99 bottles of OOP][book]. Don't forget to smash like, subscribe and leave a comment.... Sorry give the rubygem a go and leave an issue on the repo.
+# Pragmatic Refactoring with 99 bottles of OOP
+
+This article is sponsored by [retest][retest], a gem that helps you refactor ruby projects on the fly just like the methodology described in [99 bottles of OOP][book]. Don't forget to smash like, subscribe and leave a comment.... I meant give the retest a go and leave an issue on the repo, now back to the article.
 
 ![demo](https://alexbarret.com/images/external/retest-demo-26bcad04.gif)
 <small class="d-block text-center"><i>Refactor code one change at a time with [retest][retest].</i></small>
 
 ## A great refactoring book
 
-Last year, I read the amazing [99 bottles of OOP][book] by Sandi Metz, Katrina Owen & TJ Stankus. The book explores OOP concepts and how to refactor code while being one `cmd + z` away from green tests. It teaches practical techniques for getting things done that lead, naturally and inevitably, to beautiful code, **one line change at a time**. That is right you read that properly.
+Last year, I read the amazing [99 bottles of OOP][book] by Sandi Metz, Katrina Owen & TJ Stankus. The book explores OOP concepts and how to refactor code while being one `cmd + z` away from green tests. It teaches practical techniques for getting things done that lead, naturally and inevitably, to beautiful code, **by changing one line at a time**. That is right you read that properly. For every single line of code that changes your tests should remain green. If they fail, then undo the change and try again.
 
-For every single line of code that changes your tests should remain green. If they fail, then `cmd + z` and try again. How is this possible? Well 99 bottles explain the technique thoroughly. It is a bit tricky at the beginning but just like any technique it becomes simpler over time. 
+How is this possible? 99 bottles explain the technique thoroughly. It is a bit tricky at the beginning but just like any technique it becomes simpler over time. 
 
 _The gif above gives an example on how this is possible although this particular example can be considered cheating._
 
 ## The methodology
 
-The book is an ode to ['preparatory refactoring'](https://martinfowler.com/articles/preparatory-refactoring-example.html) by introducing a new feature for the 99 bottles song. How can we replace any references of `6 bottles` to `a six-pack` in the song? Simple to understand yet not trivial.
+The book is an ode to ['preparatory refactoring'](https://martinfowler.com/articles/preparatory-refactoring-example.html) by introducing a new feature for the 99 bottles song. How can we replace any references of `6 bottles` to `1 six-pack` in the song? Simple to understand yet not trivial.
+
+The authors go through the change following the `open/close principle`: Code is open to a new requirement when you can meet that new requirement without changing existing code. It is best expressed with this quote from Kent Beck.
 
 > for each desired change, make the change easy (warning: this may be hard), then make the easy change. [Kent Beck](https://twitter.com/KentBeck/status/250733358307500032?s=20)
+
 
 ## Make the change easy
 
 The first step to great refactoring is good test coverage to increase confidence that new changes are preserving the code functionality. 
 
-Good test coverage doesn't mean loads of tests and the book is a good example of that. "99 bottles of OOP" handles the entire refactoring with one simple yet reliable integration test: the code must be able to print out the full song after every new code change. 
+Good test coverage doesn't mean loads of tests and the book is a good example of that. "99 bottles of OOP" handles the entire refactoring with one simple yet reliable integration test: the code must be able to print out the full song after every new code change. One assertion on a single hardcoded string of 100 lines with no dependencies on the code being tested.
 
-Developers tend to write a lot unit tests while shying away from integration tests or feature tests because considered slow. I find it fascinating that the code in the book can be refactored with this specific integration test only. During the refactoring, the authors create new classes but no new tests are introduced. New classes are considered private and don't deserve any tests (just yet). Mind blown.
+Developers tend to write a lot of coupled unit tests while shying away from integration tests or feature tests because considered slow. I find it fascinating that the code in the book can be refactored with this specific integration test only. During the refactoring, the authors create new classes but no new tests are introduced. New classes are considered private and don't deserve any tests (just yet). Mind blown.
 
 ## Keep calm and carry on
 
-The authors tell you to trust the process even if the code seems far from being ready to introduce the new change. Keep calm and continue refactoring, ultimately the code will reach a state where the new feature can be introduced. This refactoring phase is more of a mechanical process as it doesn't require a vision or sparks of ingenuity. Repeat simple known atomic changes and code will become ready for change. **Always.**
+The authors tell you to trust the process even if the code seems far from being open to change. Keep calm and continue refactoring, ultimately the code will reach a state where the new feature can be introduced. This refactoring phase is more of a mechanical process as it doesn't require a vision or sparks of ingenuity. It looks like this:
+
+1. Change one line
+2. Run the tests
+3. If the tests fail, undo the change
+4. Go back to step 1
+
+Authors teach simple effective rules to help identify areas requiring refactoring like the Flocking rule. Then repeat simple known atomic changes from Martin Folwer's book [refactoring](https://www.refactoring.com/) and code will become ready for change. **Always.**
 
 ## Make the easy change
 
-Only once the code is in a good state that you:
+Only once the code is open that you go back to the boring TDD part:
 
-* Make the tests fail by testing the new feature
+* Make the tests fail by updating your test
 * Make the change
 * Make the tests pass
 * gg 2ez
 
 ## Make it easy to understand
 
-It's only at that point that the authors write unit tests to cover the newly introduced classes. This section of the book uses clever tips to write tests that document and teach future devs how to use the new classes effectively. Really useful.
+It's only at that point that the authors write unit tests to cover most but not all newly introduced classes. That is right, every class doesn't need unit tests when they can still be considered too small or private. This section of the book uses insightful methods to write tests that document and teach future devs how to use the new classes effectively. As tests are written, classes are still being refactored. Amazing chapter.
 
 ## The infamous test
 
@@ -85,12 +97,14 @@ The book is at its 2nd edition. I read that book twice already and will probably
 
 This book gave me the incentive to create a gem that facilitates this type of extreme refactoring: [retest][retest].
 
-Retest is a small command-line tool to help you refactor code and works with every Ruby projects (ruby, rspec, rails, rake). Designed to be dev-centric and project independent, it can be used on the fly. No Gemfile updates, no commits to a repo or configuration files required to start refactoring. Please consider giving it a go. It is simple as
+Retest is a small command-line tool to help you refactor code and works with every Ruby projects (ruby, rspec, rails, rake). Designed to be dev-centric and project independent, it can be used on the fly. No Gemfile updates, no commits to a repo or configuration files like Guard required to start refactoring. The gif at the start shows how to install and use the gem. 
 
 ~~~bash
 $ gem install retest
 $ retest --auto
+
+# Start refactoring by making a change and save the file
 ~~~
 {: data-target="code-highlighter.bash"}
 
-If you're interested in reading [99 bottles of OOP][book] while going through the changes yourself this gem is for you. It will rerun the infamous integration test after every file change.
+If you're interested in reading [99 bottles of OOP][book] while going through the changes yourself this gem is for you. It will rerun the infamous integration test after every change made.
