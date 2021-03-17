@@ -42,7 +42,10 @@ class DrummingSkill < Skill
   def fundamentals
     "rudiments"
   end
-  alias :simple_fundamentals :fundamentals
+
+  def simple_fundamentals
+    "rudiments"
+  end
 
   def technique
     "music break"
@@ -50,6 +53,24 @@ class DrummingSkill < Skill
 
   def shine
     "chop"
+  end
+end
+
+class WrittingSkill < Skill
+  def experts
+    "writers"
+  end
+
+  def fundamentals
+  end
+
+  def simple_fundamentals
+  end
+
+  def technique
+  end
+
+  def shine
   end
 end
 ~~~
@@ -69,7 +90,15 @@ Fear of becoming obsolete
 
 Becoming a good developer requires a lot of training
 
+# Writing Fundamentals
 
+* Read much and often (learn)
+* plan your writing (test?)
+* write regularly (practice)
+* love the dictionary (vocabulary)
+* improve writing mechanics (grammar)
+* the best writing is rewriting (refactoring, proof read)
+* don't quit (persist)
 
 
 # Resources
