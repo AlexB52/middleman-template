@@ -21,7 +21,7 @@ This article is sponsored by [retest][retest], a gem that helps you refactor rub
 
 ## A great refactoring book
 
-Last year, I read the amazing _[99 Bottles of OOP][book]_ by Sandi Metz, Katrina Owen & TJ Stankus. The book explores OOP concepts and how to refactor code while being one `cmd + z` away from green tests. It teaches practical techniques for getting things done that lead, naturally and inevitably, to beautiful code, **by changing one line at a time**. That is right you read that properly. For every single line of code that changes your tests should remain green. If they fail, then undo the change and try again.
+Last year, I read the amazing _[99 Bottles of OOP][book]_ by Sandi Metz, Katrina Owen & TJ Stankus. The book explores OOP concepts and how to refactor code while being one `cmd + z` away from green tests. It teaches 'practical techniques for getting things done that lead, naturally and inevitably, to beautiful code', **by changing one line at a time**. That is right you read that properly. For every single line of code that changes your tests should remain green. If they fail, then undo the change and try again.
 
 How is this possible? _[99 Bottles of OOP](book)_ explains the technique thoroughly. It is a bit tricky at the beginning but just like any technique, it becomes simpler over time. 
 
@@ -42,7 +42,7 @@ The first step to great refactoring is a good test coverage to increase confiden
 
 Good test coverage doesn't mean loads of tests and the book is a good example of that. _[99 Bottles of OOP](book)_ handles the entire refactoring with one simple yet reliable integration test: the code must be able to print out the full song after every new code change. One assertion on a single hardcoded string of 100 lines with no dependencies on the code being tested.
 
-Developers tend to write a lot of coupled unit tests while shying away from slow integration tests or feature tests because. I find it fascinating that the code in the book can be refactored with only this specific integration test. During the refactoring, the authors create new classes but no new tests. New classes are considered private and don't deserve any tests (just yet). Mind-blowing.
+Developers tend to write a lot of coupled unit tests while shying away from slow integration tests or feature tests. I find it fascinating that the code in the book can be refactored with only this specific integration test. During the refactoring, the authors create new classes but no new tests. New classes are considered private and don't deserve any tests (just yet). Mind-blowing.
 
 ## Keep calm and carry on
 
