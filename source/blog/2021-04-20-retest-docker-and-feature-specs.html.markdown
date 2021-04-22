@@ -4,7 +4,6 @@ title: Retest - Docker & Feature Specs
 date: 2021-04-20 05:38 UTC
 tags: docker, E2E tests, retest, feature spec, github action, github workflow
 description: This article describes the end-to-end (2E2) testing setup using Docker for a ruby gem called retest.
-published: false 
 
 ---
 
@@ -31,7 +30,7 @@ Last year, I read the amazing [99 Bottles of OOP](https://sandimetz.com/99bottle
 
 ## Testing the gem
 
-For some time I relied only unit tests and manual testing on different ruby setups like Rails, Ruby ad-hoc, Hanami. This was becoming difficult as each setup can be paired with Minitest or RSpec. 
+For some time I relied only on unit tests and manual testing of different ruby setups like Rails, Ruby ad-hoc, Hanami. This was becoming difficult as each setup can be paired with Minitest or RSpec. 
 
 E2E Testing retest is an interesting challenge. I need to run tests locally and on GitHub actions for a specific git branch. The latest state of the gem must be built and tested on multiple ruby setups. For each ruby setup, I need to test whether the gem:
 
@@ -45,7 +44,7 @@ E2E Testing retest is an interesting challenge. I need to run tests locally and 
 
 I have a love/hate relationship with Docker. We use it extensively at work. I understand its benefits and why people use it but most often than not Docker is slow and a frustrating experience. Unless you have an image laying around, you know you're up for a treat when a Docker app that hasn't been touched for a year needs an issue fixed. Fixing Docker often takes longer than fixing the issue itself…
 
-However, I recently used Docker to test [retest][retest] on different Ruby environments. Docker allows me to spin different a ruby setup with retest installed in the container. 
+However, I recently used Docker to test [retest][retest] on different Ruby environments. Docker allows me to spin different ruby apps in a container with retest installed. 
 
 Currently, Retest is being tested on:
 
@@ -57,7 +56,7 @@ Currently, Retest is being tested on:
 
 **Bonus: I also test git commands on a git-ruby docker container for the --diff feature**
 
-Check out the [gem][retest], those setups live in the `features` folder. All feature specs follow the same structure and it goes like this.
+Check out the [gem][retest], those setups live in the `features` folder. All feature specs follow the same structure.
 
 #### GitHub actions
 
@@ -88,7 +87,7 @@ app-tests:
 
 #### Test commands
 
-A setup can be tested on GitHub actions and locally via a dedicated `bin/test` command which looks like this. In this example we run the `bin/test/rails-app` for the rails with minitest repository.
+A setup can be tested on GitHub actions and locally via a dedicated `bin/test` command. In this example, we run the `bin/test/rails-app` for the rails app using minitest.
 
 ~~~bash
 #!/usr/bin/env bash
@@ -107,7 +106,7 @@ docker-compose -f features/rails-app/docker-compose.yml up --build --exit-code-f
 
 #### Dockerfile & docker-compose.yml
 
-The docker file fit the type setup, in this case a rails app without webpack :) One thing to note is that retest is also installed with `RUN gem install retest.gem`
+The docker file fits the setup tested, in this case, a rails app without webpack :) One thing to note is that retest is also installed with `RUN gem install retest.gem`
 
 ~~~
 # features/rails-app/Dockerfile
@@ -150,7 +149,7 @@ services:
 
 #### The E2E test file
 
-Each app has a `retest/retest_test.rb` lol which is a test suite tailored for the app setup under test. Here are some examples.
+Each app has a `retest/retest_test.rb` file which is a test suite tailored for the  setup under test. Here are some examples of tests ussed.
 
 ~~~ruby
 require_relative 'test_helper'
@@ -212,9 +211,9 @@ end
 
 ##### Helper methods
 
-Each repository has a group of helper methods to imitate the creation, the update and the deletion of file in the repository under test (and trigger retest). 
+Each repository has a group of helper methods to imitate the creation, update and deletion of a file in the repository under test (and trigger retest). 
 
-Each of those helper methods are implementing a different sleeping time based on the repository type. For example, a rails app will take longer to run a test than a ruby program for example, that is why the sleeping time is 10 seconds for a rails app but 1 second on a ruby program.
+Each of those helper methods is implementing a different sleeping time based on the repository type. A rails app will take longer to run a test than a ruby program that is why the sleeping time is 10 seconds for a rails app but 1 second on a ruby program.
 
 ~~~ruby
 module FileHelper
